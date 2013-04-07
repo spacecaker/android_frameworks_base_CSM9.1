@@ -26,7 +26,7 @@
 
     <FrameLayout
         android:id="@+id/recents_bg_protect"
-        android:background="@drawable/status_bar_recents_background_sense4"
+        android:background="@drawable/status_bar_recents_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true">
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="0.0dip"
-            android:src="@drawable/status_bar_recents_background_sense4"
+            android:src="@drawable/status_bar_recents_background"
         />
 
         <com.android.systemui.recent.RecentsHorizontalScrollView
@@ -74,7 +74,7 @@
 
     </FrameLayout>
 
-    <include layout="@layout/status_bar_no_recent_apps_sense4"
+    <include layout="@layout/status_bar_no_recent_apps"
         android:id="@+id/recents_no_apps"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
