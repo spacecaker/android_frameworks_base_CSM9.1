@@ -287,26 +287,12 @@
     </LinearLayout>
 
 
-        <com.android.internal.widget.multiwaveview.MultiWaveView
+        <com.android.internal.widget.WaveView
             android:id="@+id/unlock_widget"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
 
-            android:targetDrawables="@array/lockscreen_targets_with_camera"
-            android:targetDescriptions="@array/lockscreen_target_descriptions_with_camera"
-            android:directionDescriptions="@array/lockscreen_direction_descriptions"
-            android:handleDrawable="@drawable/ic_lockscreen_handle"
-            android:waveDrawable="@drawable/ic_lockscreen_outerring"
-            android:outerRadius="@dimen/multiwaveview_target_placement_radius"
-            android:snapMargin="@dimen/multiwaveview_snap_margin"
-            android:hitRadius="@dimen/multiwaveview_hit_radius"
-            android:rightChevronDrawable="@drawable/ic_lockscreen_chevron_right"
-            android:horizontalOffset="0dip"
-            android:verticalOffset="60dip"
-            android:feedbackCount="3"
-            android:vibrationDuration="20"
             />
 
         <TextView
@@ -360,4 +346,5 @@
         />
 
 </GridLayout>
+
 
