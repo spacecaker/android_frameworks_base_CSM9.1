@@ -5,6 +5,7 @@ CyanoSpaceMod 9.1 frameworks base currently for kumquat
 HDPI is supported so hdpi users can build ;) 
 
 Special thanks to 
-Atis112 
-Cyanogenmod
-FXP 
+Atis112,
+Cyanogenmod,
+FXP,
+SquadZone, 
