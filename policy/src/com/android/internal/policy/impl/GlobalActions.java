@@ -217,11 +217,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     takeScreenshot();
                 }
 
-				public boolean showDuringKeyguard() {
+		public boolean showDuringKeyguard() {
                     return true;
                 }
 
-				public boolean showBeforeProvisioning() {
+		public boolean showBeforeProvisioning() {
                     return true;
                 }
             },
