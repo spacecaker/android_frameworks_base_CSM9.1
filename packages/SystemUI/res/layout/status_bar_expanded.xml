@@ -33,10 +33,6 @@
         android:orientation="vertical"
         android:background="@drawable/notification_header_bg"
     >
-        <com.android.systemui.statusbar.powerwidget.PowerWidget android:id="@+id/exp_power_stat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -89,6 +85,12 @@
                 android:contentDescription="@string/accessibility_clear_all"
                 />            
         </RelativeLayout>
+        
+        <com.android.systemui.statusbar.powerwidget.PowerWidget android:id="@+id/exp_power_stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+        
     </LinearLayout>
 
     <View
