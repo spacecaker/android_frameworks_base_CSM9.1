@@ -196,7 +196,23 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
                 public void onPress() {
                     // shutdown by making sure radio and power are handled accordingly.
-                    ShutdownThread.shutdown(mContext, true);
+                    ShutdownThread.shutdown(getUiContext(), true);
+                }
+
+                public boolean showDuringKeyguard() {
+                    return true;
+                }
+
+                public boolean showBeforeProvisioning() {
+                    return true;
+                }
+            });
+
+        // next: screenshot
+        mItems.add(
+            new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
+                public void onPress() {
+                    takeScreenshot();
                 }
 
                 public boolean showDuringKeyguard() {
@@ -210,21 +226,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         // next: airplane mode
         mItems.add(mAirplaneModeOn);
-        // next: screenshot
-        mItems.add(		
-            new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
-                public void onPress() {
-                    takeScreenshot();
-                }
 
-		public boolean showDuringKeyguard() {
-                    return true;
-                }
-
-		public boolean showBeforeProvisioning() {
-                    return true;
-                }
-            },
         // last: silent mode
         if (SHOW_SILENT_TOGGLE) {
             mItems.add(mSilentModeAction);
@@ -428,6 +430,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
+            Action action = getItem(position);
             final Context context = getUiContext();
             return action.create(context, convertView, parent, LayoutInflater.from(context));
         }
