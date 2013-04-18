@@ -29,31 +29,33 @@
         android:background="@drawable/status_bar_recents_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
-        <com.android.systemui.recent.RecentsVerticalScrollView
-            android:id="@+id/recents_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
+        <com.android.systemui.recent.RecentsHorizontalScrollView android:id="@+id/recents_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/status_bar_recents_right_glow_margin"
             android:divider="@null"
             android:stackFromBottom="true"
-            android:fadingEdge="vertical"
+            android:fadingEdge="horizontal"
             android:scrollbars="none"
-            android:fadingEdgeLength="@*android:dimen/status_bar_height"
+            android:fadingEdgeLength="@dimen/status_bar_recents_fading_edge_length"
             android:layout_gravity="bottom|left"
+            android:orientation="horizontal"
             android:clipToPadding="false"
             android:clipChildren="false">
 
             <LinearLayout android:id="@+id/recents_linear_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:clipToPadding="false"
                 android:clipChildren="false">
             </LinearLayout>
 
-        </com.android.systemui.recent.RecentsVerticalScrollView>
+        </com.android.systemui.recent.RecentsHorizontalScrollView>
 
     </FrameLayout>
 
