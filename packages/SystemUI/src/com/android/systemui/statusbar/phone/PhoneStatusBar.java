@@ -509,11 +509,11 @@ public class PhoneStatusBar extends StatusBar {
         }
         else if (recent_style == 2) {
             mRecentsPanel = (RecentsPanelView) LayoutInflater.from(mContext).inflate(
-                    R.layout.status_bar_recent_panel, tmpRoot, false);
+                    R.layout.status_bar_recent_panel_sense4, tmpRoot, false);
         }
         else {
             mRecentsPanel = (RecentsPanelView) LayoutInflater.from(mContext).inflate(
-                    R.layout.status_bar_recent_panel_sense4, tmpRoot, false);
+                    R.layout.status_bar_recent_panel, tmpRoot, false);
         }
 
         mRecentsPanel.setRecentTasksLoader(mRecentTasksLoader);
