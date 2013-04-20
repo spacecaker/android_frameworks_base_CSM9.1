@@ -2383,6 +2383,17 @@ public final class Settings {
         public static final String STATUS_BAR_IME_SWITCHER = "status_bar_ime_switcher";
 
         /**
+         * the type of recent switcher
+         *
+         * 0 = Stock
+         * 1 = WebAOKP
+         * 2 = Sense 4
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SWITCHER = "recent_app_switcher";
+        
+        /**
          * Whether to use a separate delay for "slide to unlock" and security
          * lock
          * @hide
