@@ -2129,6 +2129,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_SOUNDS_ENABLED = "lockscreen_sounds_enabled";
+        
+        /**
+         * Colorfilter for the statusbar notifications.
+         * @hide
+         */
+        public static final String LOCKSCREEN_SHOW_TEXTS = "lockscreen_show_texts";  
 
         /**
          * URI for the low battery sound file.
