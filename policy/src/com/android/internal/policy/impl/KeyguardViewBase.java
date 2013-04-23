@@ -216,16 +216,13 @@ public abstract class KeyguardViewBase extends FrameLayout {
                         }
                         // Volume buttons should only function for music.
                         if (mAudioManager.isMusicActive()) {
-                            if (keyCode == KeyEvent.KEYCODE_VOLUME_MUTE) {
-                                mAudioManager.toggleMute(AudioManager.STREAM_MUSIC);
-                            } else {
-                                mAudioManager.adjustStreamVolume(
-                                            AudioManager.STREAM_MUSIC,
-                                            keyCode == KeyEvent.KEYCODE_VOLUME_UP
-                                                    ? AudioManager.ADJUST_RAISE
-                                                    : AudioManager.ADJUST_LOWER,
-                                            0);
-                            }
+                            // TODO: Actually handle MUTE.
+                            mAudioManager.adjustStreamVolume(
+                                        AudioManager.STREAM_MUSIC,
+                                        keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                                ? AudioManager.ADJUST_RAISE
+                                                : AudioManager.ADJUST_LOWER,
+                                        0);
                         }
                         // Don't execute default volume behavior
                         return true;

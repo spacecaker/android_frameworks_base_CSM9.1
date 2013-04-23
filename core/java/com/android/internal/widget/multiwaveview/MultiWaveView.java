@@ -41,6 +41,7 @@ import android.view.accessibility.AccessibilityManager;
 import com.android.internal.R;
 
 import java.util.ArrayList;
+import java.lang.IndexOutOfBoundsException;
 
 /**
  * A special widget containing a center and outer ring. Moving the center ring to the outer ring
@@ -81,46 +82,6 @@ public class MultiWaveView extends View {
     private static final float TAP_RADIUS_SCALE_ACCESSIBILITY_ENABLED = 1.3f;
     private TimeInterpolator mChevronAnimationInterpolator = Ease.Quad.easeOut;
 
-    /**
-     * @hide
-     */
-    public final static String ICON_RESOURCE = "icon_resource";
-
-    /**
-     * @hide
-     */
-    public final static String ICON_PACKAGE = "icon_package";
-
-    /**
-     * @hide
-     */
-    public final static String ICON_FILE = "icon_file";
-
-    /**
-     * Number of customizable lockscreen targets for tablets
-     * @hide
-     */
-    public final static int MAX_TABLET_TARGETS = 7;
-
-    /**
-     * Number of customizable lockscreen targets for phones
-     * @hide
-     */
-    public final static int MAX_PHONE_TARGETS = 4;
-
-    /**
-     * Empty target used to reference unused lockscreen targets
-     * @hide
-     */
-    public final static String EMPTY_TARGET = "empty";
-
-    /**
-     * Default stock configuration for lockscreen targets
-     * @hide
-     */
-    public final static String DEFAULT_TARGETS = "empty|empty|empty|#Intent;action=android.intent.action.MAIN;" +
-            "category=android.intent.category.LAUNCHER;component=com.android.camera/.Camera;S.icon_resource=ic_lockscreen_camera_normal;end";
-
     private ArrayList<TargetDrawable> mTargetDrawables = new ArrayList<TargetDrawable>();
     private ArrayList<TargetDrawable> mChevronDrawables = new ArrayList<TargetDrawable>();
     private ArrayList<Tweener> mChevronAnimations = new ArrayList<Tweener>();
@@ -147,7 +108,6 @@ public class MultiWaveView extends View {
     private float mSnapMargin = 0.0f;
     private boolean mDragging;
     private int mNewTargetResources;
-    private ArrayList<TargetDrawable> mNewTargetDrawables;
 
     private AnimatorListener mResetListener = new AnimatorListenerAdapter() {
         public void onAnimationEnd(Animator animator) {
@@ -176,10 +136,6 @@ public class MultiWaveView extends View {
                 internalSetTargetResources(mNewTargetResources);
                 mNewTargetResources = 0;
                 hideTargets(false);
-            } else if (mNewTargetDrawables != null) {
-                internalSetTargetResources(mNewTargetDrawables);
-                mNewTargetDrawables = null;
-                hideTargets(false);
             }
             mAnimatingTargets = false;
         }
@@ -187,6 +143,7 @@ public class MultiWaveView extends View {
     private int mTargetResourceId;
     private int mTargetDescriptionsResourceId;
     private int mDirectionDescriptionsResourceId;
+    private Drawable[] mTargetDrawableArray;
 
     public MultiWaveView(Context context) {
         this(context, null);
@@ -572,6 +529,18 @@ public class MultiWaveView extends View {
         mTargetDrawables = targetDrawables;
         updateTargetPositions();
     }
+    
+    private void internalSetTargetResources(Drawable[] drawable) {
+        Resources res = getContext().getResources();
+        int count = drawable.length;
+        ArrayList<TargetDrawable> targetDrawables = new ArrayList<TargetDrawable>(count);
+        for (int i = 0; i < count; i++) {
+        	targetDrawables.add(new TargetDrawable(res, drawable[i]));
+        }
+        mTargetDrawableArray = drawable;
+        mTargetDrawables = targetDrawables;
+        updateTargetPositions();
+    }
 
     /**
      * Loads an array of drawables from the given resourceId.
@@ -587,23 +556,21 @@ public class MultiWaveView extends View {
         }
     }
 
-    public void setTargetResources(ArrayList<TargetDrawable> drawList) {
+    public void setTargetResources(Drawable[] drawable) {
         if (mAnimatingTargets) {
             // postpone this change until we return to the initial state
-            mNewTargetDrawables = drawList;
+            //mNewTargetResources = resourceId;
         } else {
-            internalSetTargetResources(drawList);
+            internalSetTargetResources(drawable);
         }
     }
-
-    private void internalSetTargetResources(ArrayList<TargetDrawable> drawList) {
-        mTargetResourceId = 0;
-        mTargetDrawables = drawList;
-        updateTargetPositions();
-    }
-
+    
     public int getTargetResourceId() {
         return mTargetResourceId;
+    }
+    
+    public Drawable[] getTargetDrawableArray() {
+        return mTargetDrawableArray;
     }
 
     /**
@@ -987,7 +954,7 @@ public class MultiWaveView extends View {
     }
 
     private String getTargetDescription(int index) {
-        if (mTargetDescriptions == null || mTargetDescriptions.isEmpty() || index >= mTargetDescriptions.size()) {
+        if (mTargetDescriptions == null || mTargetDescriptions.isEmpty()) {
             mTargetDescriptions = loadDescriptions(mTargetDescriptionsResourceId);
             if (mTargetDrawables.size() != mTargetDescriptions.size()) {
                 Log.w(TAG, "The number of target drawables must be"
@@ -995,11 +962,17 @@ public class MultiWaveView extends View {
                 return null;
             }
         }
-        return mTargetDescriptions.get(index);
+        String s = "";
+        try {
+        	s = mTargetDescriptions.get(index);
+        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
+        }
+        return s;
     }
 
     private String getDirectionDescription(int index) {
-        if (mDirectionDescriptions == null || mDirectionDescriptions.isEmpty() || index >= mDirectionDescriptions.size()) {
+        if (mDirectionDescriptions == null || mDirectionDescriptions.isEmpty()) {
             mDirectionDescriptions = loadDescriptions(mDirectionDescriptionsResourceId);
             if (mTargetDrawables.size() != mDirectionDescriptions.size()) {
                 Log.w(TAG, "The number of target drawables must be"
@@ -1007,7 +980,12 @@ public class MultiWaveView extends View {
                 return null;
             }
         }
-        return mDirectionDescriptions.get(index);
+        try {
+        	String desc = mDirectionDescriptions.get(index);
+        	return desc;
+        } catch (Exception e) {
+        	return "";
+        }
     }
 
     private ArrayList<String> loadDescriptions(int resourceId) {
