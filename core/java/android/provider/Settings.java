@@ -2415,7 +2415,7 @@ public final class Settings {
         public static final String SCREEN_LOCK_SLIDE_SCREENOFF_DELAY = "screen_lock_slide_screenoff_delay";
 
         /**
-         * Whether to use the custom quick unlock screen controlLOCKSCREEN_CUSTOM_RING_APP_ACTIVITIES
+         * Whether to use the custom quick unlock screen control
          * @hide
          */
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
@@ -2425,6 +2425,7 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
+
         /**
          * Lockscreen toggle to allow 4 icons 0:false/1:true
          * 
