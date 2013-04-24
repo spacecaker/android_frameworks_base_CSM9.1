@@ -2420,11 +2420,187 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
 
+         /**
+         * Standard battery text color
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR_STOCK = "battery_text_color_stock";
+
+        /**
+         * Allow color changing on battery text
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR_ALLOWED = "battery_text_color_allowed";
+
+        /**
+         * Battery charging color
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR_CHARGE = "battery_text_color_charge";
+
+        /**
+         * Battery color when 16% or higher
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR_NORMAL = "battery_text_color_normal";
+
+        /**
+         * Battery color when 15% or lower
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR_LOW = "battery_text_color_low";
+	
+        /**
+         * Show/Hide battery text %
+         *
+         * @hide
+         */
+        public static final String BATTERY_TEXT = "battery_text";
+
+        /**
+         * Volume rocker wake option
+         *
+         * @hide
+         */
+        public static final String VOLUME_WAKE = "volume_wake";
+
         /**
          * Stores values for custom lockscreen targets
          * @hide
          */
         public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
+
+        /**
+         * Lockscreen toggle to allow 4 icons 0:false/1:true
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_EXTRA_ICONS = "lockscreen_extra_icons";
+
+        /**
+         * Lockscreen toggle to force sound icon used instead of camera
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_FORCE_SOUND_ICON = "lockscreen_force_sound_icon";
+
+        /**
+         * Setting to allow % on lockscreen always showing.
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY = "lockscreen_battery";
+
+        /**
+         * Setting to allows for the lockscreen to appear before the unlock
+         * screen when unlock is enable. Unlock screen is
+         * PIN/PATTERN/FACEUNLOCK/PASSWORD
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_BEFORE_UNLOCK = "lockscreen_before_unlock";
+
+        /**
+         * Lockscreen custom app one
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_ONE = "lockscreen_custom_one";
+
+        /**
+         * Lockscreen custom app two
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_TWO = "lockscreen_custom_two";
+
+        /**
+         * Lockscreen custom app three
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_THREE = "lockscreen_custom_three";
+        
+        /**
+         * Lockscreen custom app four
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_FOUR = "lockscreen_custom_four";
+
+        /**
+         * Lockscreen custom app five
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_FIVE = "lockscreen_custom_five";
+
+        /**
+         * Lockscreen custom app six
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_SIX = "lockscreen_custom_six";
+
+        /**
+         * Lock Screen Picker!
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_TYPE = "lockscreen_type";
+
+        /**
+         * Hide those stupid arrows
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_HIDE_ARROWS = "lockscreen_hide_arrows";
+
+        /**
+         * Unlock rotary by dragging down
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_ROTARY_UNLOCK_DOWN = "lockscreen_rotary_unlock_down";
+
+        /**
+         * Ring Apps to launch with ring style and custom app toggle enabled
+         * @hide
+         */
+        public static final String[] LOCKSCREEN_CUSTOM_RING_APP_ACTIVITIES = new String[] {
+            "lockscreen_custom_app_activity_1",
+            "lockscreen_custom_app_activity_2",
+            "lockscreen_custom_app_activity_3",
+            "lockscreen_custom_app_activity_4"
+        };
+
+        /**
+         * Choose the ICS music widget or old style on lockscreen
+         * 
+         * @hide
+         */
+        public static final String MUSIC_WIDGET_TYPE = "music_widget_type";
+
+        /**
+         * Is music playing & transportview visible?
+         * 1 = visible transport view
+         * 0 = hidden transport view
+         * wont allow SMS popup to work with transportview visible
+         * as they dont play nice together
+         * @hide
+         */
+        public static final String LOCKSCREEN_SMS_MUSIC = "lockscreen_sms_music";
+
+        /**
+         * Whether or not to show lockscreen sms call widget
+         * @hide
+         */
+        public static final String LOCKSCREEN_SMS_CALL_WIDGET = "lockscreen_sms_call_widget";
 
         /**
          * Boolean value whether to link ringtone and notification volumes

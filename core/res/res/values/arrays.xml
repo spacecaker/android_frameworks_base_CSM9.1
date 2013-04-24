@@ -461,7 +461,7 @@
         <item>中文 (繁體)</item>
     </string-array>
 
-    <!-- Resources for MultiWaveView in LockScreen -->
+     <!-- Resources for MultiWaveView in LockScreen -->
     <array name="lockscreen_targets_when_silent">
         <item>@drawable/ic_lockscreen_unlock</item>
         <item>@null</item>
@@ -508,6 +508,72 @@
         <item>@string/description_target_unlock</item>
         <item>@null</item>
         <item>@string/description_target_camera</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_extra_apps">
+        <item>@drawable/ic_lockscreen_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@drawable/ic_lockscreen_camera</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_extra_apps_descriptions">
+        <item>@string/description_target_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@string/description_target_camera</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_extra_apps_soundon">
+        <item>@drawable/ic_lockscreen_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@drawable/ic_lockscreen_silent</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_when_soundon_descriptions">
+        <item>@string/description_target_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@string/description_target_silent</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_when_silent">
+        <item>@drawable/ic_lockscreen_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@drawable/ic_lockscreen_soundon</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+    </array>
+
+    <array name="zzlockscreen_extra_apps_silent_descriptions">
+        <item>@string/description_target_unlock</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
+        <item>@string/description_target_soundon</item>
+        <item>@null</item>
+        <item>@null</item>
         <item>@null</item>
     </array>
 
