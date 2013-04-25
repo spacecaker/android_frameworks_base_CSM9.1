@@ -1068,10 +1068,10 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 							true);
 			else if (mUseNote)
 				if (stupidFix)
-				    inflater.inflate(R.layout.keyguard_screen_Note_unlock_new, this,
+				    inflater.inflate(R.layout.keyguard_screen_note_unlock_new, this,
 						    true);
 				else
-					inflater.inflate(R.layout.keyguard_screen_Note_unlock, this,
+					inflater.inflate(R.layout.keyguard_screen_note_unlock, this,
 							true);							
 			else
 				if (stupidFix)

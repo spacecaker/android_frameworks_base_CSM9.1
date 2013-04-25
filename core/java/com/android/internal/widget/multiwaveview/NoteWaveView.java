@@ -186,7 +186,7 @@ public class NoteWaveView extends View {
 
         // Read array of target drawables
         TypedValue outValue = new TypedValue();
-        if (a.getValue(R.styleable.NoteWaveView_targetDrawables, outValue)) {
+        if (a.getValue(R.styleable.NoteWaveView_notetargetDrawables, outValue)) {
             internalSetTargetResources(outValue.resourceId);
         }
         if (mTargetDrawables == null || mTargetDrawables.size() == 0) {
@@ -194,7 +194,7 @@ public class NoteWaveView extends View {
         }
 
         // Read array of target descriptions
-        if (a.getValue(R.styleable.NoteWaveView_targetDescriptions, outValue)) {
+        if (a.getValue(R.styleable.NoteWaveView_notetargetDescriptions, outValue)) {
             final int resourceId = outValue.resourceId;
             if (resourceId == 0) {
                 throw new IllegalStateException("Must specify target descriptions");
@@ -203,7 +203,7 @@ public class NoteWaveView extends View {
         }
 
         // Read array of direction descriptions
-        if (a.getValue(R.styleable.NoteWaveView_directionDescriptions, outValue)) {
+        if (a.getValue(R.styleable.NoteWaveView_notedirectionDescriptions, outValue)) {
             final int resourceId = outValue.resourceId;
             if (resourceId == 0) {
                 throw new IllegalStateException("Must specify direction descriptions");
