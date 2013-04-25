@@ -23,6 +23,7 @@ import com.android.internal.widget.RingSelector;
 import com.android.internal.widget.SenseLikeLock;
 import com.android.internal.widget.SlidingTab;
 import com.android.internal.widget.WaveView;
+import com.android.internal.widget.LGWaveView;
 import com.android.internal.widget.multiwaveview.MultiWaveView;
 import com.android.internal.widget.multiwaveview.NoteWaveView;
 
@@ -127,6 +128,8 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 			mContext.getContentResolver(), Settings.System.LOCKSCREEN_TYPE, 0) == 6);
 	private boolean mUseNote = (Settings.System.getInt(
 			mContext.getContentResolver(), Settings.System.LOCKSCREEN_TYPE, 0) == 7);			
+	private boolean mUseLghd = (Settings.System.getInt(
+			mContext.getContentResolver(), Settings.System.LOCKSCREEN_TYPE, 0) == 8);
 
 	// omg ring lock?!
 	private String[] mCustomRingAppActivities = new String[] {
@@ -1072,7 +1075,14 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 						    true);
 				else
 					inflater.inflate(R.layout.keyguard_screen_note_unlock, this,
-							true);							
+							true);	
+			else if (mUseLghd)
+				if (stupidFix)
+				    inflater.inflate(R.layout.keyguard_screen_lg40_unlock_new, this,
+						    true);
+				else
+					inflater.inflate(R.layout.keyguard_screen_lg40_unlock, this,
+							true);								
 			else
 				if (stupidFix)
 				    inflater.inflate(R.layout.keyguard_screen_tab_unlock_new, this,
@@ -1099,6 +1109,9 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 						this, true);
 			else if (mUseNote)
 				inflater.inflate(R.layout.keyguard_screen_note_unlock_land,
+						this, true);
+			else if (mUseLghd)
+				inflater.inflate(R.layout.keyguard_screen_lg40_unlock_land,
 						this, true);						
 			else
 				inflater.inflate(R.layout.keyguard_screen_tab_unlock_land,
