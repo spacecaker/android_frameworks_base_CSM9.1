@@ -40,8 +40,8 @@ import com.android.internal.R;
  * A special widget containing a center and outer ring. Moving the center ring to the outer ring
  * causes an event that can be caught by implementing OnTriggerListener.
  */
-public class WaveView extends View implements ValueAnimator.AnimatorUpdateListener {
-    private static final String TAG = "WaveView";
+public class LGWaveView extends View implements ValueAnimator.AnimatorUpdateListener {
+    private static final String TAG = "LGWaveView";
     private static final boolean DBG = false;
     private static final long VIBRATE_SHORT = 20;  // msec
     private static final long VIBRATE_LONG = 20;  // msec
@@ -92,11 +92,11 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     private int mLockState = STATE_RESET_LOCK;
     private int mGrabbedState = OnTriggerListener.NO_HANDLE;
 
-    public WaveView(Context context) {
+    public LGWaveView(Context context) {
         this(context, null);
     }
 
-    public WaveView(Context context, AttributeSet attrs) {
+    public LGWaveView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         // TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WaveView);
