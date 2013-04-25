@@ -5254,6 +5254,59 @@
     </declare-styleable>
 
     <!-- =============================== -->
+    <!-- NoteWaveView class attributes -->
+    <!-- =============================== -->
+    <declare-styleable name="NoteWaveView">
+        <!-- Reference to an array resource that be shown as targets around a circle. -->
+        <attr name="notetargetDrawables" format="reference"/>
+
+        <!-- Reference to an array resource that be used as description for the targets around the circle. -->
+        <attr name="notetargetDescriptions" format="reference"/>
+
+        <!-- Reference to an array resource that be used to announce the directions with targets around the circle. -->
+        <attr name="notedirectionDescriptions" format="reference"/>
+
+        <!-- Sets a drawable as the drag center. -->
+        <attr name="notehandleDrawable" format="reference" />
+
+        <!-- Drawable to use for chevron animation on the left. May be null. -->
+        <attr name="leftnoteChevronDrawable" format="reference" />
+
+        <!-- Drawable to use for chevron animation on the right. May be null. -->
+        <attr name="rightnoteChevronDrawable" format="reference" />
+
+        <!-- Drawable to use for chevron animation on the top. May be null. -->
+        <attr name="topnoteChevronDrawable" format="reference" />
+
+        <!-- Drawable to use for chevron animation on the bottom. May be null. -->
+        <attr name="bottomnoteChevronDrawable" format="reference" />
+
+        <!-- Drawable to use for wave ripple animation. -->
+        <attr name="notewaveDrawable" format="reference" />
+
+        <!-- Outer radius of target circle. Icons will be drawn on this circle. -->
+        <attr name="noteouterRadius" format="dimension" />
+
+        <!-- Size of target radius. Points within this distance of target center is a "hit". -->
+        <attr name="notehitRadius" format="dimension" />
+
+        <!-- Tactile feedback duration for actions. Set to '0' for no vibration. -->
+        <attr name="notevibrationDuration" format="integer"/>
+
+        <!-- How close we need to be before snapping to a target. -->
+        <attr name="notesnapMargin" format="dimension" />
+
+        <!-- Number of waves/chevrons to show in animation. -->
+        <attr name="notefeedbackCount" format="integer" />
+
+        <!-- Used to shift center of pattern vertically. -->
+        <attr name="noteverticalOffset" format="dimension" />
+
+        <!-- Used to shift center of pattern horizontally. -->
+        <attr name="notehorizontalOffset" format="dimension" />
+    </declare-styleable>
+
+    <!-- =============================== -->
     <!-- MultiWaveView class attributes -->
     <!-- =============================== -->
     <eat-comment />

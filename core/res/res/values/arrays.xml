@@ -600,4 +600,12 @@
         <item>com.google.android.gsf|com.google.android.talk</item>
     </string-array>
 
+    <array name="space_note">
+        <item>@drawable/space_note_lockscreen_unlock</item>
+    </array>
+
+    <array name="space_note2">
+        <item>@string/space_note_target_unlock</item>
+    </array>
+
 </resources>
