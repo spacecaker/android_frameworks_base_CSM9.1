@@ -28,7 +28,7 @@
     android:id="@+id/root"
     android:clipChildren="false">
 
-    <com.android.internal.widget.LGWaveview
+    <com.android.internal.widget.LGWaveView
         android:id="@+id/unlock_widget"
         android:orientation="horizontal"
         android:layout_height="match_parent"
