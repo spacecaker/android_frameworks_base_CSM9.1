@@ -2382,6 +2382,13 @@ public final class Settings {
          */
         public static final String STATUS_BAR_IME_SWITCHER = "status_bar_ime_switcher";
 
+         /**             
+         * statusbar color picker
+         * 
+         * @hide
+         */
+        public static final String STATUSBAR_BACKGROUND_COLOR = "statusbar_background_color";
+
         /**
          * the type of recent switcher
          *
