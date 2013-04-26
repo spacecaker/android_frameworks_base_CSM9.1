@@ -16,15 +16,11 @@
 
 package com.android.systemui.statusbar.phone;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,10 +49,6 @@ public class PhoneStatusBarView extends FrameLayout {
 
     Rect mButtonBounds = new Rect();
     boolean mCapturingEvents = true;
-    
-    //let's make some custom colors and alpha levels... who needs layouts?
-    private int mBackgroundColor;
-    Handler mHandler;    
 
     public PhoneStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -73,12 +65,6 @@ public class PhoneStatusBarView extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mService.onBarViewAttached();
-        //turn on the observer
-        mHandler = new Handler();
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
-
-        updateSettings();        
     }
     
     @Override
@@ -195,30 +181,4 @@ public class PhoneStatusBarView extends FrameLayout {
         }
         return false;
     }
-    
-    //setup observer to do stuff!
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-
-            resolver.registerContentObserver(Settings.System.getUriFor(Settings.System.STATUSBAR_BACKGROUND_COLOR), false, this);
-            updateSettings();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-    
-    private void updateSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-        mBackgroundColor = Settings.System.getInt(resolver, Settings.System.STATUSBAR_BACKGROUND_COLOR, 0xFF000000);
-        
-        setBackgroundColor(mBackgroundColor);
-    }    
 }
