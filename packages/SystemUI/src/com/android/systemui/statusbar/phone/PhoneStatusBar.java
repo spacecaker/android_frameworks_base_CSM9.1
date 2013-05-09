@@ -91,7 +91,7 @@ import com.android.systemui.statusbar.StatusBar;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.policy.DateView;
-import com.android.systemui.statusbar.policy.BatteryController;
+import com.android.spacecaker.CSMBatteryMod.BatteryController;
 import com.android.systemui.statusbar.policy.LocationController;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
