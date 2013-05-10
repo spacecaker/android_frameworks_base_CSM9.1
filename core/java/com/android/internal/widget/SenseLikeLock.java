@@ -60,7 +60,7 @@ import com.android.internal.R;
 public class SenseLikeLock extends View{
 
 	private String TAG = "SenseLikeLock";
-	private static final boolean DBG = true;
+	private static final boolean DBG = false;
 	private static final boolean IDBG = DBG;
 	private static final boolean TDBG = false;
     private static final boolean VISUAL_DEBUG = false;
@@ -150,11 +150,13 @@ public class SenseLikeLock extends View{
 	public SenseLikeLock(Context context, AttributeSet attrs) {
 		super(context,attrs);
 		
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTab);
-		    // TODO obtain proper orientaion
+		   TypedArray a =
+	            context.obtainStyledAttributes(attrs, R.styleable.SenseLikeSelector);
+		   // TODO obtain proper orientaion
 		   
-	        mOrientation = a.getInt(R.styleable.SlidingTab_orientation, VERTICAL);
-	        
+	        mOrientation = a.getInt(R.styleable.SenseLikeSelector_orientation, VERTICAL);
+	        a.recycle();
+
 	        Resources r = getResources();
 	        mDensity = r.getDisplayMetrics().density;
 	        int densityDpi = r.getDisplayMetrics().densityDpi;
@@ -170,12 +172,6 @@ public class SenseLikeLock extends View{
 	            mDensityScaleFactor=(float)(240.0 / densityDpi);
 	        if(densityDpi <= 160 && densityDpi >= 120)
 	            mDensityScaleFactor=(float)(160.0 / densityDpi);
-
-	        
-	        
-	        
-
-	        a.recycle();
 	        
 	        initializeUI();
 		// TODO Auto-generated constructor stub
@@ -240,8 +236,10 @@ public class SenseLikeLock extends View{
             	int ar[] = {(width - mLockIcon.getWidth())/2, (height -(2*(mLockIcon.getHeight()/3))) };
             
             if((mGrabbedState == OnSenseLikeSelectorTriggerListener.ICON_SHORTCUT_GRABBED_STATE_GRABBED ) && isShortTriggered( eventX, eventY)){
-            	Log.d(TAG, "Shortcut Triggered");
-            
+                if (DBG) {
+                   Log.d(TAG, "Shortcut Triggered");
+                }
+
             	switch(this.mShortCutSelected){
             		
             	case 1:
@@ -306,14 +304,14 @@ public class SenseLikeLock extends View{
 		int width = getWidth();
 		int heighth = getHeight();
 		if((mLockX >= (width - padding) || mLockX <= padding ) ){
-    		Log.d(TAG, "Dispatching horizontal lock trigger event");
+    		  if (DBG) Log.d(TAG, "Dispatching horizontal lock trigger event");
     		dispatchTriggerEvent(OnSenseLikeSelectorTriggerListener.LOCK_ICON_TRIGGERED);
     		return true;
     		
     	}
     	if( (mLockY <= (heighth/2)) || (mLockY >= (heighth - padding )) ){
 
-    		Log.d(TAG, "Setting Dispatch for vertical lock trigger event");
+    		if (DBG) Log.d(TAG, "Setting Dispatch for vertical lock trigger event");
     		return true;
     	}
     	return false;
@@ -348,7 +346,7 @@ public class SenseLikeLock extends View{
 	}
 	private boolean whichShortcutSelected() {
 		
-		Log.d(TAG, "Figuring out which shortcut");
+		 if (DBG) Log.d(TAG, "Figuring out which shortcut");
 
         if (DBG) log("x -" + mLockX + " y -" + mLockY);
 		
@@ -357,12 +355,12 @@ public class SenseLikeLock extends View{
 			// next determine the shortcut
 			int width = this.getWidth()/2; // start from the middle
 			int padding = this.mShortcutsBackground.getWidth()/2;
-			Log.d(TAG, "Touch within shortcut bar");
+			if (DBG) Log.d(TAG, "Touch within shortcut bar");
 			
 			if(mLockX >  width - (padding*6) && mLockX < width - (padding*4)){
 				// this is the first lock
 				mShortCutSelected = 1;
-				Log.d(TAG, "Shortcut one");
+				if (DBG) Log.d(TAG, "Shortcut one");
 				/**         **/
 		    	if(mUseShortcutOne)
 		    		return true;
@@ -372,7 +370,7 @@ public class SenseLikeLock extends View{
 			if(mLockX >  width - (padding*3) && mLockX < width - (padding)){
 				// this is the first lock
 				mShortCutSelected = 2;
-				Log.d(TAG, "Shortcut two");
+				if (DBG) Log.d(TAG, "Shortcut two");
 				/**         **/
 		    	if(mUseShortcutTwo)
 		    		return true;
@@ -382,7 +380,7 @@ public class SenseLikeLock extends View{
 			if(mLockX <  width + (padding*3) && mLockX > width + (padding)){
 				// this is the first lock
 				mShortCutSelected = 3;
-				Log.d(TAG, "Shortcut three");
+				if (DBG) Log.d(TAG, "Shortcut three");
 				/**         **/
 		    	if(mUseShortcutThree)
 		    		return true;
@@ -392,7 +390,7 @@ public class SenseLikeLock extends View{
 			if(mLockX <  width + (padding*6) && mLockX > width + (padding*4)){
 				// this is the first lock
 				mShortCutSelected = 4;
-				Log.d(TAG, "Shortcut four");
+				if (DBG) Log.d(TAG, "Shortcut four");
 				/**         **/
 		    	if(mUseShortcutFour)
 		    		return true;
@@ -400,11 +398,11 @@ public class SenseLikeLock extends View{
 		    		return false;
 			}
 			
-			Log.d(TAG, "No shortcut selected");
+			if (DBG) Log.d(TAG, "No shortcut selected");
 			return false;
 		}
 
-		Log.d(TAG, "No touch in shortcut bar");
+		if (DBG) Log.d(TAG, "No touch in shortcut bar");
 	return false;
 		
 		
@@ -445,11 +443,11 @@ public class SenseLikeLock extends View{
             mLockIcon = getBitmapFor(R.drawable.sense_ring_on_unlock);
             canvas.drawBitmap(mLockIcon,  mLockX-(mLockIcon.getWidth()/2), mLockY - mLockIcon.getHeight()/2, mPaint);	
         } else if (mUsingShortcuts) {
-        	Log.d(TAG, "Shorcut bar drawing without moving ring");
+        	if (DBG) Log.d(TAG, "Shorcut bar drawing without moving ring");
         	canvas.drawBitmap(mLockAppIcon,  (width - mLockIcon.getWidth())/2, (height -(2*(mLockIcon.getHeight()/3))), mPaint);
             drawShorts(canvas, halfWidth, padding);  
         } else {
-        	Log.d(TAG, "Shorcut bar drawing with moving ring");
+        	if (DBG) Log.d(TAG, "Shorcut bar drawing with moving ring");
             if(mUseShortcutOne)drawShortOne(canvas, halfWidth - (padding*6), mShortCutHeight);
             if(mUseShortcutTwo)drawShortTwo(canvas, halfWidth - (padding*3), mShortCutHeight);
             if(mUseShortcutThree)drawShortThree(canvas, halfWidth + (padding), mShortCutHeight);
@@ -461,7 +459,7 @@ public class SenseLikeLock extends View{
 		return;
 	}
 	private void doUnlockAnimation() {
-		Log.d(TAG, "dounlockanimation");
+		if (DBG) Log.d(TAG, "dounlockanimation");
 		
 		this.mUnlockAnimation = new ScaleAnimation(1,0,1,0);
 		this.mUnlockAnimation.setDuration(1000L);
@@ -480,7 +478,7 @@ public class SenseLikeLock extends View{
 
         switch(mShortCutSelected) {
 	        case 1 : { 
-	          Log.d(TAG, "Drawing shorcut new position");
+	          if (DBG) Log.d(TAG, "Drawing shorcut new position");
               if(mUseShortcutOne)drawMovableShort(canvas, 1, mShortcutsBackground.getWidth()/2 );
               if(mUseShortcutTwo)drawShortTwo(canvas, halfWidth - (padding*3), mShortCutHeight);
               if(mUseShortcutThree)drawShortThree(canvas, halfWidth + (padding), mShortCutHeight);
@@ -588,7 +586,7 @@ public class SenseLikeLock extends View{
     // ************* Initilization function
     
     private void initializeUI(){
-    	Log.d(TAG, "Initializing user interface");
+    	if (DBG) Log.d(TAG, "Initializing user interface");
     	mLockIcon = getBitmapFor(R.drawable.sense_ring);
     	mLowerBackground = getBitmapFor(R.drawable.sense_panel);
     	mShortcutsBackground = getBitmapFor(R.drawable.app_bg);
@@ -738,7 +736,7 @@ public class SenseLikeLock extends View{
     
     
     private Bitmap getBitmapFromDrawable(Drawable icon) {
-    	Log.d(TAG, "Decoding drawable to bitmap");
+    	if (DBG) Log.d(TAG, "Decoding drawable to bitmap");
     	
 	Bitmap myBitmap =  Bitmap.createBitmap(icon.getIntrinsicWidth(),icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
 	Canvas canvas = new Canvas(myBitmap);
@@ -757,7 +755,7 @@ public class SenseLikeLock extends View{
     		return((BitmapDrawable)icon).getBitmap();
     	else
     	{
-    		Log.d(TAG, "The drawable could not be decoded into a bitmap");
+    		if (DBG) Log.d(TAG, "The drawable could not be decoded into a bitmap");
     		return null;
     	}
 
@@ -789,7 +787,7 @@ public class SenseLikeLock extends View{
      * 
      */
     public void setShortCutsDrawables(Drawable FarLeft, Drawable Left, Drawable Right, Drawable FarRight) {
-        log("Setting the icon One");
+        if (DBG) log("Setting the icon One");
         if(FarLeft != null)mShortCutOne = getBitmapFromDrawable(FarLeft);
 
         if(mShortCutOne != null)
@@ -797,7 +795,7 @@ public class SenseLikeLock extends View{
         else
            mUseShortcutOne = false;
 
-        log("Setting the icon Two");
+        if (DBG) log("Setting the icon Two");
         if(FarLeft != null)mShortCutTwo = getBitmapFromDrawable(Left);
 
         if(mShortCutTwo != null)
@@ -805,7 +803,7 @@ public class SenseLikeLock extends View{
         else
            mUseShortcutTwo = false;
 
-        log("Setting the icon Three");
+        if (DBG) log("Setting the icon Three");
         if(FarLeft != null)mShortCutThree = getBitmapFromDrawable(Right);
 
         if(mShortCutThree != null)
@@ -813,7 +811,7 @@ public class SenseLikeLock extends View{
         else
            mUseShortcutThree = false;
 
-        log("Setting the icon Four");
+        if (DBG) log("Setting the icon Four");
         if(FarLeft != null)mShortCutFour = getBitmapFromDrawable(FarRight);
 
         if(mShortCutFour != null)
@@ -849,7 +847,6 @@ public class SenseLikeLock extends View{
      */
  
     public void setToTwoShortcuts(boolean UseOnlyTwoShortcuts){
-    	if(UseOnlyTwoShortcuts == true)Log.d(TAG, "Using only two shortcuts");
     	mUseShortcutTwo = UseOnlyTwoShortcuts;
     	
     }
