@@ -75,13 +75,16 @@ public class Clock extends TextView {
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_AM_PM), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CLOCK), false, this);
+            resolver.registerContentObserver(
+                Settings.System.getUriFor(Settings.System.STATUS_BAR_AM_PM), false, this);
+            resolver.registerContentObserver(
+                Settings.System.getUriFor(Settings.System.STATUS_BAR_CLOCK), false, this);
+            resolver.registerContentObserver(
+                Settings.System.getUriFor(Settings.System.CLOCK_COLOR), false, this);
         }
 
-        @Override public void onChange(boolean selfChange) {
+        @Override
+        public void onChange(boolean selfChange) {
             updateSettings();
         }
     }
@@ -155,6 +158,7 @@ public class Clock extends TextView {
     };
 
     final void updateClock() {
+        AM_PM_STYLE = (Settings.System.getInt(getContext().getContentResolver(), Settings.System.STATUS_BAR_AM_PM, 2));
         mCalendar.setTimeInMillis(System.currentTimeMillis());
         setText(getSmallTime());
     }
@@ -238,25 +242,21 @@ public class Clock extends TextView {
 
     }
 
-    private void updateSettings(){
+    protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
-        mAmPmStyle = (Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_AM_PM, 2));
+        int mColorChanger = Settings.System.getInt(resolver,
+                Settings.System.CLOCK_COLOR, 0xFF33B5E5);
 
-        if (mAmPmStyle != AM_PM_STYLE) {
-            AM_PM_STYLE = mAmPmStyle;
-            mClockFormatString = "";
+        setTextColor(mColorChanger);
 
-            if (mAttached) {
-                updateClock();
-            }
+        mClockFormatString = "";
+        if (mAttached) {
+            updateClock();
         }
 
-        mShowClock = (Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_CLOCK, 1) == 1);
-
-        if(mShowClock)
+        mShowClock = (Settings.System.getInt(resolver, Settings.System.STATUS_BAR_CLOCK, 1) == 1);
+        if (mShowClock)
             setVisibility(View.VISIBLE);
         else
             setVisibility(View.GONE);

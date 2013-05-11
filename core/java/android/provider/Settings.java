@@ -2330,14 +2330,39 @@ public final class Settings {
         public static final String COMBINED_BAR_AUTO_HIDE = "combined_bar_auto_hide";
 
         /**
-         * Display style of AM/PM next to clock in status bar
-         * 0: Normal display (Eclair stock)
-         * 1: Small display (Froyo stock)
-         * 2: No display (Gingerbread/ICS stock)
-         * default: 2
-         * @hide
-         */
+        * Color for the clock
+        * @hide
+        */
+        public static final String CLOCK_COLOR = "clock_color";
+		
+        /*
+        * 0: hide
+        * 1: show right clock
+        * 2: show center clock
+        * @hide
+        */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+
+        
+        /**
+        * Display style of AM/PM next to clock in status bar
+        *
+        * @hide
+        */
         public static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
+
+        /**
+        * Setting to hide clock.
+        * @hide
+        */
+        public static final String HIDE_CLOCK = "hide_clock";
+
+        /**
+        * Setting to hide clock.
+        * @hide
+        */
+        public static final String HIDE_ALARM = "hide_alarm";
+
 
         /**
          * Display style of the status bar battery information
@@ -2348,16 +2373,6 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_BATTERY = "status_bar_battery";
-
-        /**
-         * Whether to show the clock in status bar
-         * of the stock battery icon
-         * 0: don't show the clock
-         * 1: show the clock
-         * default: 1
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
 
         /**
          * Whether to show the signal text or signal bars.
