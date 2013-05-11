@@ -128,6 +128,7 @@ public class PhoneStatusBar extends StatusBar {
     private static final float BRIGHTNESS_CONTROL_PADDING = 0.15f;
 
     private boolean mShowClock;
+	private boolean mShowCenterClock;
     private boolean mBrightnessControl;
     private boolean mAutoBrightness;
 
@@ -166,6 +167,7 @@ public class PhoneStatusBar extends StatusBar {
 
     // icons
     LinearLayout mIcons;
+	LinearLayout mClock;
     IconMerger mNotificationIcons;
     View mMoreIcon;
     LinearLayout mStatusIcons;
@@ -377,6 +379,7 @@ public class PhoneStatusBar extends StatusBar {
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mIcons = (LinearLayout)sb.findViewById(R.id.icons);
         mTickerView = sb.findViewById(R.id.ticker);
+		mClock = (LinearLayout)sb.findViewById(R.id.center);
 
         /* Destroy the old widget before recreating the expanded dialog
            to make sure there are no context issues */
@@ -1142,14 +1145,19 @@ public class PhoneStatusBar extends StatusBar {
     }
 
     public void showClock(boolean show) {
-        ContentResolver resolver = mContext.getContentResolver();
-
         View clock = mStatusBarView.findViewById(R.id.clock);
-        mShowClock = (Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_CLOCK, 1) == 1);
-        if (clock != null) {
-            clock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
+        View cclock = mStatusBarView.findViewById(R.id.clockcenter);
+        mShowClock = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.STATUS_BAR_CLOCK, 1) == 1);
+        mShowCenterClock = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.STATUS_BAR_CLOCK, 1) == 2);
+        if (mShowClock && show) {
+            clock.setVisibility(View.VISIBLE);
+        } else if (mShowCenterClock && show) {
+            cclock.setVisibility(View.VISIBLE);
+        } else {
+            clock.setVisibility(View.GONE);
+            cclock.setVisibility(View.GONE);
         }
+
     }
 
     /**
@@ -1843,15 +1851,19 @@ public class PhoneStatusBar extends StatusBar {
             mTicking = true;
             mIcons.setVisibility(View.GONE);
             mTickerView.setVisibility(View.VISIBLE);
+			mClock.setVisibility(View.GONE);
             mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_up_in, null));
             mIcons.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
+			mClock.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
         }
 
         @Override
         public void tickerDone() {
             mIcons.setVisibility(View.VISIBLE);
             mTickerView.setVisibility(View.GONE);
+			mClock.setVisibility(View.VISIBLE);
             mIcons.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
+			mClock.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
             mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_down_out,
                         mTickingDoneListener));
         }
@@ -1859,7 +1871,9 @@ public class PhoneStatusBar extends StatusBar {
         public void tickerHalting() {
             mIcons.setVisibility(View.VISIBLE);
             mTickerView.setVisibility(View.GONE);
+			mClock.setVisibility(View.VISIBLE);
             mIcons.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
+			mClock.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
             mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.fade_out,
                         mTickingDoneListener));
         }
