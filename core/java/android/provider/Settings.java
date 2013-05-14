@@ -2373,6 +2373,8 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_BATTERY = "status_bar_battery";
+        
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
         /**
          * Whether to show the signal text or signal bars.
