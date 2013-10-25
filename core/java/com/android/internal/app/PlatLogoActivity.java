@@ -64,7 +64,10 @@ public class PlatLogoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        mToast = Toast.makeText(this, "CSM9.1: CyanoSpaceMod ICS", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, "CSM9.1", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, "CyanoSpaceMod ICS", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, "Bringing Unique tastes", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, "To You're Phones!", Toast.LENGTH_SHORT);
 
         mContent = new ImageView(this);
         mContent.setImageResource(com.android.internal.R.drawable.platlogo);
